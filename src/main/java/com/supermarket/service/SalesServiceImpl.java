@@ -38,13 +38,13 @@ public class SalesServiceImpl implements SalesService {
 
                 if(promotions.get(0).getType().equals("QTY_BASED_PRICE_OVERRIDE")){
 
-                    for (int amountPromot = 0; amountPromot < salesRequest.getQty(); amountPromot++) {
+                    for (int amountPromot = 1; amountPromot <= salesRequest.getQty(); amountPromot++) {
                         if(amountPromot % 2 == 0){
-                            qtyPromot = qtyPromot + 1;
-                            totalPromot =  promotions.get(0).getPrice() * qtyPromot;
+                          qtyPromot = qtyPromot + 1;
+                          totalPromot =  promotions.get(0).getPrice() * qtyPromot;
                         }else{
-                            qtySales = qtySales + 1;
-                            totalPrice = productsDTO.getPrice() * qtySales;
+                          qtySales = qtySales + 1;
+                          totalPrice = productsDTO.getPrice() * qtySales;
                         }
                     }
 
@@ -52,10 +52,10 @@ public class SalesServiceImpl implements SalesService {
                     salesRequest.setValuePromotions(totalPromot);
                     salesRequest.setValuetotal(totalPrice);
                 }else  if(promotions.get(0).getType().equals("BUY_X_GET_Y_FREE")){
-                    for (int amountPromot = 0; amountPromot < salesRequest.getQty(); amountPromot++) {
+                    for (int amountPromot = 1; amountPromot <= salesRequest.getQty(); amountPromot++) {
                         if(amountPromot % 2 == 0){
-                            salesRequest.setPricePromotions(0.00);
-                            salesRequest.setValuePromotions(0.00);
+                          salesRequest.setPricePromotions(0.00);
+                          salesRequest.setValuePromotions(0.00);
                         }else{
                             qtySales = qtySales + 1;
                             totalPrice = productsDTO.getPrice() * qtySales;
@@ -66,7 +66,7 @@ public class SalesServiceImpl implements SalesService {
 
             }
             if(promotions.get(0).getType().equals("FLAT_PERCENT")){
-                for (int amountPromot = 0; amountPromot < salesRequest.getQty(); amountPromot++) {
+                for (int amountPromot = 1; amountPromot <= salesRequest.getQty(); amountPromot++) {
                     if(amountPromot % 2 == 0){
                         qtyPromot = qtyPromot + 1;
                         totalPromot =  promotions.get(0).getPrice() * qtyPromot;
