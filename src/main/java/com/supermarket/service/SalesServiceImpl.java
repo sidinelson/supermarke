@@ -67,10 +67,9 @@ public class SalesServiceImpl implements SalesService {
             if(promotions.get(0).getType().equals("FLAT_PERCENT")){
                 totalPrice =  salesRequest.getPrice() * salesRequest.getQty();
                 totalPromot = totalPrice * ((double) promotions.get(0).getAmount()/100);
-                totalPrice = totalPrice - totalPromot;
                 salesRequest.setPricePromotions(promotions.get(0).getPrice());
                 salesRequest.setValuetotal(totalPrice);
-                salesRequest.setValuePromotions(totalPromot);
+                salesRequest.setValuePromotions(totalPrice - totalPromot);
             }
         }else{
             salesRequest.setPricePromotions(0.00);
