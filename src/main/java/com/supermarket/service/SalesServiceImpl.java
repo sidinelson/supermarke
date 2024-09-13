@@ -63,20 +63,11 @@ public class SalesServiceImpl implements SalesService {
                     }
                     salesRequest.setValuetotal(totalPrice);
                 }
-
             }
             if(promotions.get(0).getType().equals("FLAT_PERCENT")){
-                for (int amountPromot = 1; amountPromot <= salesRequest.getQty(); amountPromot++) {
-                    if(amountPromot % 2 == 0){
-                        qtyPromot = qtyPromot + 1;
-                        totalPromot =  promotions.get(0).getPrice() * qtyPromot;
-                    }else{
-                        qtySales = qtySales + 1;
-                        totalPrice =  salesRequest.getPrice() * qtySales;
-                    }
-                }
-
-                totalPromot = totalPromot * ((double) 10/100);
+                totalPrice =  salesRequest.getPrice() * salesRequest.getQty();
+                totalPromot = totalPrice * ((double) promotions.get(0).getAmount()/100);
+                totalPrice = totalPrice - totalPromot;
                 salesRequest.setPricePromotions(promotions.get(0).getPrice());
                 salesRequest.setValuetotal(totalPrice);
                 salesRequest.setValuePromotions(totalPromot);
